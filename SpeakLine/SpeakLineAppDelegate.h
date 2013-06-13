@@ -8,8 +8,28 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SpeakLineAppDelegate : NSObject <NSApplicationDelegate>
+#define kSpeakingModeNotStarted 0
+#define kSpeakingModeStopped 1
+#define kSpeakingModeSpeaking 2
+#define kSpeakingModePaused 3
 
+@interface SpeakLineAppDelegate : NSObject <NSApplicationDelegate>
+{
+    NSSpeechSynthesizer *_speechSynth;
+    int _speakingMode;
+}
+
+@property (weak) IBOutlet NSTextField *textField;
 @property (assign) IBOutlet NSWindow *window;
+@property int speakingMode;
+@property (weak) IBOutlet NSButton *stopButton;
+@property (weak) IBOutlet NSButton *startButton;
+@property (weak) IBOutlet NSButton *pauseButton;
+@property (weak) IBOutlet NSButton *continueButton;
+
+- (IBAction)stopIt:(id)sender;
+- (IBAction)speakIt:(id)sender;
+- (IBAction)pauseIt:(id)sender;
+- (IBAction)continueIt:(id)sender;
 
 @end
