@@ -32,23 +32,43 @@
     NSLog(@"applicationDidFinishLaunching");
     
     [self setSpeakingMode:kSpeakingModeNotStarted];
+    [self mapStateToUI];
 }
 
 - (void)mapStateToUI
 {
+    NSLog(@"mapStateToUI");
+
     // four buttons to worry about: stop, speak, pause, continue
                 
     switch ([self speakingMode]) {
         case kSpeakingModeNotStarted:
+            [stopButton setEnabled:NO];
+            [startButton setEnabled:YES];
+            [pauseButton setEnabled:NO];
+            [continueButton setEnabled:NO];
             break;
         case kSpeakingModeStopped:
+            [stopButton setEnabled:NO];
+            [startButton setEnabled:YES];
+            [pauseButton setEnabled:NO];
+            [continueButton setEnabled:NO];
             break;
         case kSpeakingModeSpeaking:
+            [stopButton setEnabled:YES];
+            [startButton setEnabled:NO];
+            [pauseButton setEnabled:YES];
+            [continueButton setEnabled:NO];
             break;
         case kSpeakingModePaused:
+            [stopButton setEnabled:NO];
+            [startButton setEnabled:NO];
+            [pauseButton setEnabled:NO];
+            [continueButton setEnabled:YES];
             break;
            
         default:
+            NSLog(@"Oops! Got to default case in mapStateToUI");
             break;
     }
 }
@@ -57,6 +77,9 @@
 {
     NSLog(@"stopping speaking");
     [_speechSynth stopSpeaking];
+    [self setSpeakingMode:kSpeakingModeStopped];
+    [self mapStateToUI];
+
 }
 
 - (IBAction)speakIt:(id)sender
@@ -69,18 +92,27 @@
     }
     [_speechSynth startSpeakingString:string];
     NSLog(@"speaking %@", string);
+    [self setSpeakingMode:kSpeakingModeSpeaking];
+    [self mapStateToUI];
+
 }
 
 - (IBAction)pauseIt:(id)sender
 {
     NSLog(@"pausing speaking");
     [_speechSynth pauseSpeakingAtBoundary:NSSpeechWordBoundary];
+    [self setSpeakingMode:kSpeakingModePaused];
+    [self mapStateToUI];
     
 }
 
 - (IBAction)continueIt:(id)sender {
     NSLog(@"continue speaking");
     [_speechSynth continueSpeaking];
+    [self setSpeakingMode:kSpeakingModeSpeaking];
+    [self mapStateToUI];
 }
+
+// TODO: Add callback so that when the text is fully spoken the UI is reset
 
 @end

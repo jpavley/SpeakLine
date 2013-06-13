@@ -24,12 +24,13 @@
 @property int speakingMode;
 @property (weak) IBOutlet NSButton *stopButton;
 @property (weak) IBOutlet NSButton *startButton;
-@property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSButton *continueButton;
+@property (weak) IBOutlet NSButton *pauseButton;
 
 - (IBAction)stopIt:(id)sender;
 - (IBAction)speakIt:(id)sender;
 - (IBAction)pauseIt:(id)sender;
 - (IBAction)continueIt:(id)sender;
+- (void)mapStateToUI;
 
 @end
