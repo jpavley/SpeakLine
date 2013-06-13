@@ -14,6 +14,8 @@
 @synthesize textField = _textField;
 @synthesize speakingMode = _speakingMode;
 
+@synthesize stopButton, startButton, pauseButton, continueButton;
+
 - (id)init
 {
     self = [super init];
