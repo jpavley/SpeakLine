@@ -13,6 +13,7 @@
 		18A0AAD5176889980039D3EB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 18A0AAD3176889980039D3EB /* Credits.rtf */; };
 		18A0AAD8176889980039D3EB /* SpeakLineAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0AAD7176889980039D3EB /* SpeakLineAppDelegate.m */; };
 		18A0AADB176889980039D3EB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A0AAD9176889980039D3EB /* MainMenu.xib */; };
+		B89BAF5E176A9E69004D62EB /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = B89BAF5D176A9E69004D62EB /* readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		18A0AAD6176889980039D3EB /* SpeakLineAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeakLineAppDelegate.h; sourceTree = "<group>"; };
 		18A0AAD7176889980039D3EB /* SpeakLineAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpeakLineAppDelegate.m; sourceTree = "<group>"; };
 		18A0AADA176889980039D3EB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B89BAF5D176A9E69004D62EB /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				18A0AAD6176889980039D3EB /* SpeakLineAppDelegate.h */,
 				18A0AAD7176889980039D3EB /* SpeakLineAppDelegate.m */,
+				B89BAF5D176A9E69004D62EB /* readme.md */,
 				18A0AAD9176889980039D3EB /* MainMenu.xib */,
 				18A0AACB176889980039D3EB /* Supporting Files */,
 			);
@@ -157,6 +160,7 @@
 				18A0AACF176889980039D3EB /* InfoPlist.strings in Resources */,
 				18A0AAD5176889980039D3EB /* Credits.rtf in Resources */,
 				18A0AADB176889980039D3EB /* MainMenu.xib in Resources */,
+				B89BAF5E176A9E69004D62EB /* readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +308,7 @@
 				18A0AAE0176889980039D3EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
