@@ -114,5 +114,6 @@
 }
 
 // TODO: Add callback so that when the text is fully spoken the UI is reset
+// TODO: If text is changed while speaking stop speaking an reset
 
 @end
