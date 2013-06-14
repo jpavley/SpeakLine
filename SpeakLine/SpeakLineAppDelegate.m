@@ -22,6 +22,7 @@
     if (self) {
         NSLog(@"init");
         _speechSynth = [[NSSpeechSynthesizer alloc] initWithVoice:nil];
+        [_speechSynth setDelegate:self];
     }
     return self;
 }
@@ -114,6 +115,11 @@
 }
 
 // TODO: Add callback so that when the text is fully spoken the UI is reset
+- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking
+{
+    NSLog(@"finished speaking = %d", finishedSpeaking);
+}
+
 // TODO: If text is changed while speaking stop speaking an reset
 
 @end
