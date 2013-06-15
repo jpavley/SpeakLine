@@ -14,7 +14,7 @@
 @synthesize textField = _textField;
 @synthesize speakingMode = _speakingMode;
 
-@synthesize stopButton, startButton, pauseButton, continueButton;
+@synthesize stopButton, startButton, pauseButton, continueButton, tableView;
 
 - (id)init
 {
@@ -49,30 +49,40 @@
             [startButton setEnabled:YES];
             [pauseButton setEnabled:NO];
             [continueButton setEnabled:NO];
+            [tableView setEnabled:YES];
+            [_textField setEnabled:YES];
             break;
         case kSpeakingModeStopped:
             [stopButton setEnabled:NO];
             [startButton setEnabled:YES];
             [pauseButton setEnabled:NO];
             [continueButton setEnabled:NO];
+            [tableView setEnabled:YES];
+            [_textField setEnabled:YES];
             break;
         case kSpeakingModeSpeaking:
             [stopButton setEnabled:YES];
             [startButton setEnabled:NO];
             [pauseButton setEnabled:YES];
             [continueButton setEnabled:NO];
+            [tableView setEnabled:NO];
+            [_textField setEnabled:YES];
             break;
         case kSpeakingModePaused:
             [stopButton setEnabled:NO];
             [startButton setEnabled:NO];
             [pauseButton setEnabled:NO];
             [continueButton setEnabled:YES];
+            [tableView setEnabled:NO];
+            [_textField setEnabled:YES];
             break;
         case kSpeakingModeCompleted:
             [stopButton setEnabled:NO];
             [startButton setEnabled:YES];
             [pauseButton setEnabled:NO];
             [continueButton setEnabled:NO];
+            [tableView setEnabled:YES];
+            [_textField setEnabled:YES];
             break;
            
         default:
@@ -87,7 +97,6 @@
     [_speechSynth stopSpeaking];
     [self setSpeakingMode:kSpeakingModeStopped];
     [self mapStateToUI];
-
 }
 
 - (IBAction)speakIt:(id)sender
@@ -102,7 +111,6 @@
     NSLog(@"speaking %@", string);
     [self setSpeakingMode:kSpeakingModeSpeaking];
     [self mapStateToUI];
-
 }
 
 - (IBAction)pauseIt:(id)sender
@@ -111,7 +119,6 @@
     [_speechSynth pauseSpeakingAtBoundary:NSSpeechWordBoundary];
     [self setSpeakingMode:kSpeakingModePaused];
     [self mapStateToUI];
-    
 }
 
 - (IBAction)continueIt:(id)sender {
@@ -128,6 +135,37 @@
     [self mapStateToUI];
 }
 
-// TODO: If text is changed while speaking stop speaking an reset
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tv
+{
+    return (NSInteger) [_voices count];
+}
 
+- (id)tableView:(NSTableView *)tv objectValueForTableColumn:(NSTableColumn *)tableColumn
+            row:(NSInteger)row
+{
+    NSString *v = [_voices objectAtIndex:row];
+    NSDictionary *dict = [NSSpeechSynthesizer attributesForVoice:v];
+    return [dict objectForKey:NSVoiceName];
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    NSInteger row = [tableView selectedRow];
+    if (row == -1) {
+        return;
+    }
+    NSString *selectedVoice = [_voices objectAtIndex:row];
+    [_speechSynth setVoice:selectedVoice];
+    NSLog(@"new voice = %@", selectedVoice);
+    
+}
+
+- (void)awakeFromNib
+{
+    NSString *defaultVoice = [NSSpeechSynthesizer defaultVoice];
+    NSInteger defaultRow = [_voices indexOfObject:defaultVoice];
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndex:defaultRow];
+    [tableView selectRowIndexes:indices byExtendingSelection:NO];
+    [tableView scrollRowToVisible:defaultRow];
+}
 @end

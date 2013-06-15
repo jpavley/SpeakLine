@@ -28,6 +28,7 @@
 @property (weak) IBOutlet NSButton *startButton;
 @property (weak) IBOutlet NSButton *continueButton;
 @property (weak) IBOutlet NSButton *pauseButton;
+@property (weak) IBOutlet NSTableView *tableView;
 
 - (IBAction)stopIt:(id)sender;
 - (IBAction)speakIt:(id)sender;
