@@ -67,6 +67,12 @@
             [pauseButton setEnabled:NO];
             [continueButton setEnabled:YES];
             break;
+        case kSpeakingModeCompleted:
+            [stopButton setEnabled:NO];
+            [startButton setEnabled:YES];
+            [pauseButton setEnabled:NO];
+            [continueButton setEnabled:NO];
+            break;
            
         default:
             NSLog(@"Oops! Got to default case in mapStateToUI");
@@ -114,10 +120,11 @@
     [self mapStateToUI];
 }
 
-// TODO: Add callback so that when the text is fully spoken the UI is reset
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)finishedSpeaking
 {
     NSLog(@"finished speaking = %d", finishedSpeaking);
+    [self setSpeakingMode:kSpeakingModeCompleted];
+    [self mapStateToUI];
 }
 
 // TODO: If text is changed while speaking stop speaking an reset

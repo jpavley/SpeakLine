@@ -12,6 +12,7 @@
 #define kSpeakingModeStopped 1
 #define kSpeakingModeSpeaking 2
 #define kSpeakingModePaused 3
+#define kSpeakingModeCompleted 4
 
 @interface SpeakLineAppDelegate : NSObject <NSApplicationDelegate, NSSpeechSynthesizerDelegate>
 {
