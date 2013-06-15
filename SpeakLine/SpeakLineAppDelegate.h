@@ -23,12 +23,12 @@
 
 @property (weak) IBOutlet NSTextField *textField;
 @property (assign) IBOutlet NSWindow *window;
-@property int speakingMode;
 @property (weak) IBOutlet NSButton *stopButton;
 @property (weak) IBOutlet NSButton *startButton;
 @property (weak) IBOutlet NSButton *continueButton;
 @property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSTableView *tableView;
+@property int speakingMode;
 
 - (IBAction)stopIt:(id)sender;
 - (IBAction)speakIt:(id)sender;

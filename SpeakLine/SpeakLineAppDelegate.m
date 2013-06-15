@@ -143,20 +143,22 @@
 - (id)tableView:(NSTableView *)tv objectValueForTableColumn:(NSTableColumn *)tableColumn
             row:(NSInteger)row
 {
-    NSString *v = [_voices objectAtIndex:row];
-    NSDictionary *dict = [NSSpeechSynthesizer attributesForVoice:v];
-    return [dict objectForKey:NSVoiceName];
+//    NSString *v = [_voices objectAtIndex:row];
+//    NSDictionary *dict = [NSSpeechSynthesizer attributesForVoice:v];
+//    return [dict objectForKey:NSVoiceName];
+    
+    return [[NSSpeechSynthesizer attributesForVoice:[_voices objectAtIndex:row]] objectForKey:NSVoiceName];
+    
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
     NSInteger row = [tableView selectedRow];
-    if (row == -1) {
-        return;
+    if (row != -1) {
+        NSString *selectedVoice = [_voices objectAtIndex:row];
+        [_speechSynth setVoice:selectedVoice];
+        NSLog(@"new voice = %@", selectedVoice);
     }
-    NSString *selectedVoice = [_voices objectAtIndex:row];
-    [_speechSynth setVoice:selectedVoice];
-    NSLog(@"new voice = %@", selectedVoice);
     
 }
 
