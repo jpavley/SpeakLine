@@ -23,6 +23,7 @@
         NSLog(@"init");
         _speechSynth = [[NSSpeechSynthesizer alloc] initWithVoice:nil];
         [_speechSynth setDelegate:self];
+        _voices = [NSSpeechSynthesizer availableVoices];
     }
     return self;
 }

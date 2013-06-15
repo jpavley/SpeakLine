@@ -16,6 +16,7 @@
 
 @interface SpeakLineAppDelegate : NSObject <NSApplicationDelegate, NSSpeechSynthesizerDelegate>
 {
+    NSArray *_voices;
     NSSpeechSynthesizer *_speechSynth;
     int _speakingMode;
 }
